@@ -17,6 +17,9 @@
 		914A9ED01BB73E8400F1501C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A9ECE1BB73E8400F1501C /* MapKit.framework */; };
 		914A9ED21BB7CF1100F1501C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A9ED11BB7CF1100F1501C /* libz.dylib */; };
 		914A9EE21BB7D0C000F1501C /* Gimbal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A9EE11BB7D0C000F1501C /* Gimbal.framework */; };
+		915043D71BB85CB9002AD590 /* NetworkOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915043D61BB85CB9002AD590 /* NetworkOperations.swift */; };
+		915043D91BB85D34002AD590 /* HackathonWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915043D81BB85D34002AD590 /* HackathonWebService.swift */; };
+		915043DB1BB85D9E002AD590 /* WebServiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915043DA1BB85D9E002AD590 /* WebServiceData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		914A9ED11BB7CF1100F1501C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		914A9EE11BB7D0C000F1501C /* Gimbal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Gimbal.framework; sourceTree = "<group>"; };
 		914A9F1E1BB7E0AD00F1501C /* Gimbal-Bridgin_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gimbal-Bridgin_header.h"; sourceTree = "<group>"; };
+		915043D61BB85CB9002AD590 /* NetworkOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperations.swift; sourceTree = "<group>"; };
+		915043D81BB85D34002AD590 /* HackathonWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackathonWebService.swift; sourceTree = "<group>"; };
+		915043DA1BB85D9E002AD590 /* WebServiceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,9 @@
 				914A9EB41BB7377F00F1501C /* Images.xcassets */,
 				914A9EB61BB7377F00F1501C /* LaunchScreen.xib */,
 				914A9EAB1BB7377F00F1501C /* Supporting Files */,
+				915043D61BB85CB9002AD590 /* NetworkOperations.swift */,
+				915043D81BB85D34002AD590 /* HackathonWebService.swift */,
+				915043DA1BB85D9E002AD590 /* WebServiceData.swift */,
 			);
 			path = DiseaseControl;
 			sourceTree = "<group>";
@@ -231,7 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915043D91BB85D34002AD590 /* HackathonWebService.swift in Sources */,
 				914A9EB01BB7377F00F1501C /* ViewController.swift in Sources */,
+				915043DB1BB85D9E002AD590 /* WebServiceData.swift in Sources */,
+				915043D71BB85CB9002AD590 /* NetworkOperations.swift in Sources */,
 				914A9EAE1BB7377F00F1501C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +464,7 @@
 				914A9EC91BB7377F00F1501C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		914A9ECA1BB7377F00F1501C /* Build configuration list for PBXNativeTarget "DiseaseControlTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +473,7 @@
 				914A9ECC1BB7377F00F1501C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

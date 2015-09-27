@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Gimbal.setAPIKey("def4d3a0-61f9-4664-8ba9-36bcc16da238", options: nil)
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert , categories: nil));
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil));
         
         return true
     }
@@ -29,7 +29,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GMBLPlaceManager.startMonitoring();
         }
         GMBLCommunicationManager.startReceivingCommunications();
+       
     }
+    
+    
+    
+    func communicationManager(manager: GMBLCommunicationManager!, presentLocalNotificationsForCommunications communications: [AnyObject]!, forVisit visit: GMBLVisit!) -> [AnyObject]! {
+        if(communications is [GMBLCommunication]){
+            for comm in communications{
+                
+                println("comm Title: \(comm.title), description: \(comm.descriptionText)");
+                
+                var localNotification: UILocalNotification = UILocalNotification()
+                localNotification.alertAction = "Testing notifications on iOS8"
+                localNotification.alertBody = "\(comm.title)"
+                localNotification.fireDate = NSDate(timeIntervalSinceNow: 30)
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+
+                
+                /*
+                let alert = UIAlertController(title: "Warning", message: "Entering \(visit.place.name)", preferredStyle: UIAlertControllerStyle.Alert);
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil));
+                self.presentViewController(alert, animated: true, completion: nil)
+                */
+                
+                println("RECEIEVED AN UPDATE EVENT IN THE APP DELEGATE");
+                
+            }
+            
+            
+        }
+        return communications
+    }
+
+   
+
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

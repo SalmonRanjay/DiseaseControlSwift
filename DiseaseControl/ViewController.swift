@@ -14,6 +14,11 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     //var manager:CLLocationManager!;
     //var myLocations: [CLLocation] = [];
     
+    var locationArrays = [];
+    var tweets = [];
+    
+    var combinedObject = [];
+    
     
     var placeManager :GMBLPlaceManager!;
     var commManger :GMBLCommunicationManager!;
@@ -71,14 +76,48 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         
         //3
         
+        // Webservice test
+        let beHappyService = HackathonWebService(route: "/api/location/search/-77.022121/38.895139");
+        beHappyService.getData(){
+            
+            (let valueFromWeb) in
+            
+            if let webData = valueFromWeb {
+                
+                
+                self.locationArrays = webData.getPropertyFromData("geo");
+                println(self.locationArrays);
+                // update UI
+                // using grand central dispatch to return to the main thread
+                // first parameter specifies the que we are using the main que hence "dispatch_get_main_quee
+                self.tweets = webData.getTweets("text");
+                
+                
+                
+            
+            }
+            
+        }
+        
+        // webservice test
+        
        
         
     }
-    
+        
     func placeManager(manager: GMBLPlaceManager!, didBeginVisit visit: GMBLVisit!) {
         println("Did begin Visit \(visit.place.name), at: \(visit.arrivalDate)" );
         let atts = visit.place.attributes as GMBLAttributes;
         let attKeys = atts.allKeys();
+        
+        
+        let alert = UIAlertController(title: "Warning", message: "Entering \(visit.place.name)", preferredStyle: UIAlertControllerStyle.Alert);
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil);
+
+
         
         for attKey in attKeys{
             
@@ -88,19 +127,16 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     
     func placeManager(manager: GMBLPlaceManager!, didEndVisit visit: GMBLVisit!) {
         println("Did end visit: \(visit.place.name), at: \(visit.arrivalDate)");
-    }
-    
-    func communicationManager(manager: GMBLCommunicationManager!, presentLocalNotificationsForCommunications communications: [AnyObject]!, forVisit visit: GMBLVisit!) -> [AnyObject]! {
-        if(communications is [GMBLCommunication]){
-            for comm in communications{
-                
-                println("comm Title: \(comm.title), description: \(comm.descriptionText)");
-            }
         
-        }
-        return communications
+        let alert = UIAlertController(title: "Warning", message: "leaving \(visit.place.name)", preferredStyle: UIAlertControllerStyle.Alert);
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil);
+
     }
     
+       
     // location manager delegate that updates the user's location
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -127,7 +163,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     func displayLocationInfo(placemark: CLPlacemark){
         
       
-        self.locationManager.stopUpdatingLocation();
+       // self.locationManager.stopUpdatingLocation();
          println("placemark:  \(placemark.location.coordinate.latitude)");
          println("placemark: long \(placemark.location.coordinate.longitude)");
         self.myLocation.longitude = placemark.location.coordinate.longitude;
@@ -163,12 +199,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         // , -
         
         // , -
-        var items: [[String:Double]] = [["lat":37.784765, "long":-122.407793], ["lat":37.785517, "long":-122.408988], ["lat":37.783575, "long":-122.409362], ["lat":37.784044, "long":-122.405022] ];
+       // var items: [[String:Double]] = [["lat":37.784765, "long":-122.407793], ["lat":37.785517, "long":-122.408988], ["lat":37.783575, "long":-122.409362], ["lat":37.784044, "long":-122.405022] ];
     
         
-        for itemLocatin in items {
-            if let lat = itemLocatin["lat"] {
-                if let long = itemLocatin["long"] {
+        for itemLocatin in self.locationArrays {
+            if let lat = itemLocatin["lat"] as? Double {
+                if let long = itemLocatin["long"] as? Double {
                     //let fullName = "\(firstName) \(lastName)"
                     locationObject.latitude = lat;
                     locationObject.longitude = long;
@@ -177,6 +213,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
                     var obj:MKPointAnnotation  = MKPointAnnotation();
                     obj.coordinate = locationObject;
                     println(locationObject);
+                    
+                    
+                    
                       annotationsArray.append(obj);
                     
                    
@@ -190,6 +229,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         self.mapView.addAnnotations(annotationsArray);
         
     };
+    
+    
     
     
     @IBAction func refreshIllnesses(sender: AnyObject) {
