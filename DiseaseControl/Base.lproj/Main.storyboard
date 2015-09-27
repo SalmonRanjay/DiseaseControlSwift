@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5o8-rh-VKT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--InfirmoMap-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="DiseaseControl" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,56 +18,85 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kJw-bm-mEN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="390"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="390" id="LsW-Kv-iC5"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="442"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-O6-Dpm">
-                                <rect key="frame" x="16" y="431" width="56" height="30"/>
+                                <rect key="frame" x="16" y="505" width="288" height="48"/>
+                                <color key="backgroundColor" red="0.88235294117647056" green="0.34509803921568627" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="CYj-Mg-SbJ"/>
+                                    <constraint firstAttribute="height" constant="48" id="93K-PD-nTZ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="I'm Sick">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="updateUserLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fFH-vP-SJk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-WR-VZV">
-                                <rect key="frame" x="251" y="431" width="53" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are feeling under the weather, press the button bellow and add yourself to the InfirmoMap" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upV-rd-Xen">
+                                <rect key="frame" x="16" y="452" width="288" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="53" id="VcR-o2-OPL"/>
+                                    <constraint firstAttribute="height" constant="45" id="SL3-aI-vFZ"/>
                                 </constraints>
-                                <state key="normal" title="Refresh">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="refreshIllnesses:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Lsp-Y5-tcm"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2J0-KZ-YTi"/>
-                            <constraint firstItem="kJw-bm-mEN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="J1o-9m-fbL"/>
-                            <constraint firstItem="Lem-WR-VZV" firstAttribute="top" secondItem="kJw-bm-mEN" secondAttribute="bottom" constant="41" id="JZ0-fE-dNp"/>
-                            <constraint firstItem="Lem-WR-VZV" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="M6q-G9-GGR"/>
-                            <constraint firstItem="kJw-bm-mEN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="PNQ-7b-7hg"/>
-                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="top" secondItem="kJw-bm-mEN" secondAttribute="bottom" constant="41" id="Wpv-U5-lM3"/>
-                            <constraint firstAttribute="trailing" secondItem="kJw-bm-mEN" secondAttribute="trailing" id="x0O-w6-7ld"/>
+                            <constraint firstAttribute="trailing" secondItem="kJw-bm-mEN" secondAttribute="trailing" id="06s-Kg-P7b"/>
+                            <constraint firstItem="kJw-bm-mEN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9Tb-vM-gYc"/>
+                            <constraint firstItem="upV-rd-Xen" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="JtH-Db-dyy"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Oyt-O6-Dpm" secondAttribute="bottom" constant="15" id="Ul3-gf-zpU"/>
+                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="X7c-gh-mbK"/>
+                            <constraint firstItem="upV-rd-Xen" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="gYh-Oy-TtC"/>
+                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="mwN-n6-wM1"/>
+                            <constraint firstItem="kJw-bm-mEN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="s89-KT-Apo"/>
+                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="top" secondItem="upV-rd-Xen" secondAttribute="bottom" constant="8" id="sLW-iO-cHx"/>
+                            <constraint firstItem="upV-rd-Xen" firstAttribute="top" secondItem="kJw-bm-mEN" secondAttribute="bottom" constant="10" id="ycU-jS-e3u"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="InfirmoMap" id="R3x-Lv-VzK">
+                        <barButtonItem key="rightBarButtonItem" image="refresh-icon" id="ajN-Aw-TF1">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="refreshFeed:" destination="vXZ-lx-hvc" id="neh-80-669"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="kJw-bm-mEN" id="e0n-dH-RpV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="766" y="341"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FBf-b9-e2N">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5o8-rh-VKT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nwu-vm-fr5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="kjH-6J-D5O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDX-4W-2eZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="234" y="341"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="refresh-icon" width="19" height="19"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

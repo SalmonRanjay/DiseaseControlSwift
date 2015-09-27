@@ -19,6 +19,11 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     
     var combinedObject = [];
     
+    var userAnnote = MKPointAnnotation();
+    
+    var userLat :String = "";
+    var userLong:String = "";
+    
     
     var placeManager :GMBLPlaceManager!;
     var commManger :GMBLCommunicationManager!;
@@ -36,6 +41,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.352, green: 0.643, blue: 217/255.0, alpha: 1.0);
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor();
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         
@@ -73,6 +81,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
             longitude: -0.1246402
         )
         // 2
+        //-77.022121/38.895139
         
         //3
         
@@ -163,12 +172,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     func displayLocationInfo(placemark: CLPlacemark){
         
       
-       // self.locationManager.stopUpdatingLocation();
+       self.locationManager.stopUpdatingLocation();
          println("placemark:  \(placemark.location.coordinate.latitude)");
          println("placemark: long \(placemark.location.coordinate.longitude)");
         self.myLocation.longitude = placemark.location.coordinate.longitude;
         self.myLocation.latitude = placemark.location.coordinate.latitude;
        // self.isGettingLocation = false;
+        self.userLat = placemark.location.coordinate.longitude.description//"\(placemark.location.coordinate.longitude)" ;
+        self.userLong = placemark.location.coordinate.latitude.description//"\(placemark.location.coordinate.latitude)"
+        
+        self.userAnnote.coordinate = self.myLocation;
+        self.userAnnote.title = "Im Sick";
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = self.myLocation;//location
@@ -179,7 +193,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         let region = MKCoordinateRegion(center: self.myLocation, span: span)
         mapView.setRegion(region, animated: true)
 
-        self.mapView.addAnnotation(annotation);
+       // self.mapView.addAnnotation(self.userAnnote);
         
       
     };
@@ -224,6 +238,13 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         }
         
        // println(annotationsArray);
+        /*
+        for(var i = 0; i < annotationsArray.count ; i++){
+            
+            annotationsArray[i].title = self.tweets[i] as! String;
+            
+        }
+    */
         
         
         self.mapView.addAnnotations(annotationsArray);
@@ -233,15 +254,21 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
     
     
     
-    @IBAction func refreshIllnesses(sender: AnyObject) {
+    @IBAction func refreshFeed(sender: AnyObject) {
         
         self.displayNearByIllnesses();
     }
     
     
+    
     @IBAction func updateUserLocation(sender: AnyObject) {
         
+        self.mapView.removeAnnotation(self.userAnnote)
+        self.mapView.addAnnotation(self.userAnnote);
         self.locationManager.startUpdatingLocation()
+        let networkOperation = NetworkOperations(url: NSURL(string: "http://hthon-test-app.mybluemix.net")!);
+        networkOperation.postJSONFrom();
+        
     }
     
 
