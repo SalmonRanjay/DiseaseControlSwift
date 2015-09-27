@@ -1,25 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="DiseaseControl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kJw-bm-mEN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="390"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="390" id="LsW-Kv-iC5"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-O6-Dpm">
+                                <rect key="frame" x="16" y="431" width="56" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="CYj-Mg-SbJ"/>
+                                </constraints>
+                                <state key="normal" title="I'm Sick">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateUserLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fFH-vP-SJk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-WR-VZV">
+                                <rect key="frame" x="251" y="431" width="53" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="VcR-o2-OPL"/>
+                                </constraints>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshIllnesses:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Lsp-Y5-tcm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2J0-KZ-YTi"/>
+                            <constraint firstItem="kJw-bm-mEN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="J1o-9m-fbL"/>
+                            <constraint firstItem="Lem-WR-VZV" firstAttribute="top" secondItem="kJw-bm-mEN" secondAttribute="bottom" constant="41" id="JZ0-fE-dNp"/>
+                            <constraint firstItem="Lem-WR-VZV" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="M6q-G9-GGR"/>
+                            <constraint firstItem="kJw-bm-mEN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="PNQ-7b-7hg"/>
+                            <constraint firstItem="Oyt-O6-Dpm" firstAttribute="top" secondItem="kJw-bm-mEN" secondAttribute="bottom" constant="41" id="Wpv-U5-lM3"/>
+                            <constraint firstAttribute="trailing" secondItem="kJw-bm-mEN" secondAttribute="trailing" id="x0O-w6-7ld"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="kJw-bm-mEN" id="e0n-dH-RpV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="234" y="341"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
