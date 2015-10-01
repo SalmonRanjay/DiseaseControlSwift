@@ -113,6 +113,35 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
        
         
     }
+    
+    func communicationManager(manager: GMBLCommunicationManager!, presentLocalNotificationsForCommunications communications: [AnyObject]!, forVisit visit: GMBLVisit!) -> [AnyObject]! {
+        if(communications is [GMBLCommunication]){
+            for comm in communications{
+                
+                println("comm Title: \(comm.title), description: \(comm.descriptionText)");
+                
+                var localNotification: UILocalNotification = UILocalNotification()
+                localNotification.alertAction = "alert"
+                localNotification.alertBody = "\(comm.descriptionText)"
+                localNotification.fireDate = NSDate(timeIntervalSinceNow: 120)
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                
+                
+                /*
+                let alert = UIAlertController(title: "Warning", message: "Entering \(visit.place.name)", preferredStyle: UIAlertControllerStyle.Alert);
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil));
+                self.presentViewController(alert, animated: true, completion: nil)
+                */
+                
+                println("RECEIEVED AN UPDATE EVENT IN THE APP DELEGATE");
+                
+            }
+            
+            
+        }
+        return communications
+    }
         
     func placeManager(manager: GMBLPlaceManager!, didBeginVisit visit: GMBLVisit!) {
         println("Did begin Visit \(visit.place.name), at: \(visit.arrivalDate)" );
@@ -125,6 +154,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate, GMBLPlaceManag
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil);
+    
 
 
         
