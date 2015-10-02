@@ -10,6 +10,9 @@ import Foundation
 
 class NetworkOperations{
     
+    
+    
+    
     // TODO research lazy loadin
     lazy var config: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration();
     lazy var session: NSURLSession = NSURLSession(configuration: self.config);
